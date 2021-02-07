@@ -1,0 +1,57 @@
+{% extends 'jewelry/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<header>
+    {% include 'jewelry/header.html' %}
+</header>
+
+<div class="hero-text-box">
+    <h1>My Jewelry Shop</h1>
+     <form method='get'>
+         <div class="row">
+             <div class="col span-2-of-3">
+                 <input type="text" name="search" id="search" placeholder="Search" required>
+             </div>
+             <div class="col span-1-of-3">
+                 <input type="submit" value="Search">
+             </div>
+         </div>
+     </form>
+                <!--<input type="text" class="btn btn-full">-->
+                <!--<a class="btn btn-ghost js&#45;&#45;scroll-to-plans" href="#">Search</a>-->
+</div>
+{% if members %}
+<div class="row">
+        <h2>Searched Customers</h2>
+         <div class="row">
+        {% for member in members %}
+                <div class="row">
+                    <div class="profile-box">
+                        <div class="col span-1-of-4">
+                            <!--<div class="profile-image">-->
+                                <!--<img src="" alt="{{member.name}}">-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col span-3-of-4">
+                            <p class="long-copy">
+                                Name        : {{member.name}}<br>
+                                Father      : {{member.father_name}}<br>
+                                Aadhaar     : {{member.aadhaar}}<br>
+                                Caste       : {{member.caste}}<br>
+                                Remarks     : {{member.remarks}}
+                                <br><br>
+                            <a class="btn btn-ghost" href="{% url 'customer-update' member.id %}">Update</a>
+                            <a class="btn btn-full" href="{% url 'customer-delete' member.id %}">Delete</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+             <hr>
+             <br>
+              {% endfor %}
+            </div>
+    </div>
+{% endif %}
+{% endblock %}

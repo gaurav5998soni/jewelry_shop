@@ -1,0 +1,83 @@
+{% extends 'jewelry/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div style="background-color: grey; ">{% include 'jewelry/header2.html' %}</div>
+<!--{% if messages %}-->
+    <!--<div class="row">-->
+        <!--<div class="message-box">-->
+            <!--{% for message in messages%}-->
+            <!--<h4>{{message}}</h4>-->
+            <!--{% endfor %}-->
+        <!--</div>-->
+    <!--</div>-->
+<!--{% endif %}-->
+   <section class="section-form">
+     <form method='get'  class="contact-form">
+         <div class="row">
+             <div class="col span-2-of-3">
+                 <input type="text" name="search" id="search" placeholder="Search" required>
+             </div>
+             <div class="col span-1-of-3">
+                 <input type="submit" value="Search">
+             </div>
+         </div>
+     </form>
+   </section>
+    <div class="row">
+        <h2>All Customers</h2>
+         <div class="row">
+        {% for member in page_obj %}
+                <div class="row">
+                    <div class="profile-box">
+                        <div class="col span-1-of-4">
+                            <!--<div class="profile-image">-->
+                                <!--<img src="" alt="{{member.name}}">-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col span-3-of-4">
+                            <p class="long-copy">
+                                Name        : {{member.name}}<br>
+                                Father      : {{member.father_name}}<br>
+                                Aadhaar     : {{member.aadhaar}}<br>
+                                Caste       : {{member.caste}}<br>
+                                Remarks     : {{member.remarks}}
+                                <br><br>
+                            <a class="btn btn-ghost" href="{% url 'items' member.id %}">Items</a>
+                            <a class="btn btn-ghost" href="{% url 'customer-update' member.id %}">Update</a>
+                            <a class="btn btn-full" href="{% url 'customer-delete' member.id %}">Delete</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+             <hr>
+             <br>
+              {% endfor %}
+            </div>
+    </div>
+<div class="row">
+    <div class="paginator">
+        {% if page_obj.has_other_pages %}
+	        {% if page_obj.has_previous %}
+		        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+	        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+	        {% if page_obj.has_next %}
+		        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+		        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+	        {% endif %}
+
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

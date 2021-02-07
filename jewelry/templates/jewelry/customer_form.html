@@ -1,0 +1,109 @@
+{% extends 'jewelry/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div style="background-color: grey; ">{% include 'jewelry/header2.html' %}</div>
+{% if messages %}
+    <div class="row">
+        <div class="message-box">
+            {% for message in messages%}
+            <h4>{{message}}</h4>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+<section class="section-form">
+            <div class="row">
+                <h2>Update Customer</h2>
+            </div>
+            <div class="row">
+                <form method="POST" class="contact-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="name" id="name" placeholder="Enter name" value="{{object.name}}" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="father_name">Father's Name</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="father_name" id="father_name" placeholder="Enter father's name" value="{{object.father_name}}" required>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="caste">Caste</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="caste" id="caste" placeholder="Enter caste" value="{{object.caste}}" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="mobile">Mobile</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="mobile" id="mobile" placeholder="Enter mobile" value="{{object.mobile}}" required>
+                        </div>
+                    </div>
+
+                     <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="aadhaar">Aadhaar</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="aadhaar" id="aadhaar" placeholder="Enter Aadhar" value="{{object.aadhaar}}" required>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="items">Items</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="items" id="items" placeholder="No.of Items" value="{{object.items}}" required>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="lending_amount">Lending Amount</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="lending_amount" id="lending_amount" placeholder="Lending Amount" value="{{object.lending_amount}}" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="total_intrest">Total Intrest</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="total_intrest" id="total_intrest" placeholder="Total Intrest" value="{{object.total_intrest}}" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="remarks">Remarks</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <textarea name="remarks" id="remarks" rows="10"  required>{{object.remarks}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="submit" value="Save Member">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+{% endblock %}

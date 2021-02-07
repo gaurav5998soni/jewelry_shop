@@ -1,0 +1,89 @@
+{% extends 'jewelry/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div style="background-color: grey; ">{% include 'jewelry/header2.html' %}</div>
+<section class="section-form">
+    <div class="row">
+        <div class="col span-3-of-4">
+            <h3>Add more items here</h3>
+        </div>
+
+        <div class="col span-1-of-4">
+            <a class="btn btn-ghost" href="{% url 'add-item' pk %}">Add Item</a>
+        </div>
+
+    </div>
+</section>
+  {% if page_obj %}
+    <div class="row">
+        <h2>Customer Items</h2>
+         <div class="row">
+        {% for member in page_obj %}
+                <div class="row">
+                    <div class="profile-box">
+                        <div class="col span-1-of-4">
+                            <!--<div class="profile-image">-->
+                                <!--<img src="" alt="{{member.name}}">-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col span-3-of-4">
+
+                            <p class="long-copy">
+                                Customer: {{member.customer}}<br>
+                                Name        : {{member.name}}<br>
+                                Item's id      : {{member.item_id}}<br>
+                                Weight     : {{member.weight}}<br>
+                                Lending Amount       : {{member.lending_amount}}<br>
+                                Intrest       : {{member.intrest}}<br>
+                                Remarks     : {{member.remarks}}
+                                <br><br>
+                            <a class="btn btn-ghost" href="{% url 'item-update' member.id %}">Update</a>
+                            <a class="btn btn-full" href="{% url 'item-delete' member.id %}">Delete</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+             <hr>
+             <br>
+              {% endfor %}
+            </div>
+    </div>
+
+<div class="row">
+    <div class="paginator">
+        {% if page_obj.has_other_pages %}
+	        {% if page_obj.has_previous %}
+		        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+	        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+	        {% if page_obj.has_next %}
+		        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+		        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+	        {% endif %}
+
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <h2>No Item Present</h2>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+</div>
+{% endif %}
+{% endblock %}

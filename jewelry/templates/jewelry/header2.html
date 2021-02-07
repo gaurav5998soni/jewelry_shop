@@ -1,0 +1,23 @@
+{% load static %}
+
+<nav>
+    <div class="row">
+        <a href="{%url 'home' %}">
+            <img src="{% static 'jewelry/resources/img/ring-logo.jpg' %}" alt="Bamboo Craft Cluster logo" class="logo">
+        </a>
+        <img src="{% static 'jewelry/resources/img/ring-logo.jpg' %}" alt="Bamboo Craft Cluster logo" class="logo-black">
+        <ul class="main-nav js--main-nav">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'add' %}">Add</a></li>
+            <li><a href="{% url 'customers' %}">Customers</a></li>
+            <!--<li><a href="">About us</a></li>-->
+            <!--<li><a href="#">Contact us</a></li>-->
+            <!--{% if user.is_authenticated %}-->
+            <!--<li><a href="#">Update</a></li>-->
+            <!--<li><a href="">Add Member</a></li>-->
+            <!--<li><a href="">Logout</a></li>-->
+            <!--{% endif %}-->
+        </ul>
+        <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
+    </div>
+</nav>

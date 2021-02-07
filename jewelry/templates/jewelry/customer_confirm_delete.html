@@ -1,0 +1,48 @@
+{% extends 'jewelry/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div style="background-color: grey; ">{% include 'jewelry/header2.html' %}</div>
+ <section class="section-form">
+     <div class="row">
+         <h2>Delete Confirmation</h2>
+     </div>
+     <div class="row">
+         <div class="profile-box">
+             <div class="col span-1-of-4">
+                 <div class="profile-image">
+                     <img src="" alt="{{object.name}}">
+                 </div>
+             </div>
+             <div class="col span-3-of-4">
+                 <h3>{{member.name}}</h3>
+                 <p class="long-copy">
+                                Father      : {{object.father_name}}<br>
+                                Aadhaar     : {{object.aadhaar}}<br>
+                                Caste       : {{object.caste}}<br>
+                                Remarks     : {{object.remarks}}
+                                <br><br>
+                     <br><br><br><br>
+                     <br><br>
+                 </p>
+
+             </div>
+         </div>
+     </div>
+     <div class="row">
+         <form method="POST"class="contact-form">
+             {% csrf_token %}
+             <div class="row">
+                 <div class="col span-1-of-3">
+                     <label>&nbsp;</label>
+                 </div>
+                 <div class="col span-2-of-3">
+                     <input type="submit" value="Yes confirm">
+                 </div>
+
+             </div>
+         </form>
+
+     </div>
+</section>
+{% endblock %}
